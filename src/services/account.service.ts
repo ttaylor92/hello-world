@@ -1,5 +1,6 @@
 import { AxiosRequestConfig, AxiosResponse, AxiosError } from 'axios';
 import { BaseService } from './_base';
+import { getFile, getImage, getJSON, getString, request, HttpResponse } from "tns-core-modules/http";
 
 
 
@@ -28,6 +29,22 @@ class AccountService extends BaseService {
   // --------------------------------------------------------------------------
   public async login() {
     //
+  }
+
+  public async getData() {
+    const response = {
+      data: null,
+      passed: false,
+      error: null
+    }
+
+    try {
+      response.data = await request({ url: "https://httpbin.org/get", method: "GET" });
+    } catch(error) {
+      response.error = error;
+    }
+
+    return response;
   }
 
 

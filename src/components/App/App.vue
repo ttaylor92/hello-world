@@ -14,7 +14,7 @@
 </style>
 
 <template>
-    <Page>
+    <Page @navigatingFrom="verifyNavigation($event)">
         <ActionBar title="Welcome to NativeScript-Vue!" android:flat="true"/>
         <TabView android:tabBackgroundColor="#53ba82"
                  android:tabTextColor="#c4ffdf"
@@ -22,7 +22,7 @@
                  androidSelectedTabHighlightColor="#ffffff">
             <TabViewItem title="Tab 1">
                 <GridLayout columns="*" rows="*">
-                    <Button text="To Details via method" @tap="goToDetailPage" />
+                    <Label class="message" v-model="data" textWrap col="0" row="0"/>
                 </GridLayout>
             </TabViewItem>
             <TabViewItem title="Tab 2">

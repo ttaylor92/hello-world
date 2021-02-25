@@ -1,5 +1,7 @@
 import { Component, Vue } from 'vue-property-decorator';
 import { FingerprintAuth } from 'nativescript-fingerprint-auth';
+import App from '@/components/App';
+import UserStore from '@/store/user';
 
 @Component
 class Login extends Vue {
@@ -25,7 +27,8 @@ class Login extends Vue {
             })
 
             if (result === undefined) {
-                //
+                UserStore.login();
+                this.$navigateTo(App);
             } else {
                 //
             }
@@ -35,7 +38,11 @@ class Login extends Vue {
     }
 
     private async mounted() {
-        await this.biometricsCheck();
+        if(UserStore.verified) {
+            this.$navigateTo(App);
+        } else {
+            await this.biometricsCheck();
+        }
     }
 }
 

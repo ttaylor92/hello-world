@@ -10,19 +10,29 @@ class Store extends VuexModule {
   // ------------------------------------------------------------------------
   // Fields
   // ------------------------------------------------------------------------
-  
+  private isVerified = false;
 
   // ------------------------------------------------------------------------
   // Getters
   // ------------------------------------------------------------------------
-  
+  public get verified() {
+    return this.isVerified;
+  }
+
+  // ------------------------------------------------------------------------
+  // Mutations
+  // ------------------------------------------------------------------------
+  @Mutation
+  private setVerified(value: boolean) {
+    this.isVerified = value;
+  }
 
   // ------------------------------------------------------------------------
   // Actions
   // ------------------------------------------------------------------------
   @MultiParamAction()
-  public async login() {
-    //
+  public login() {
+    this.setVerified(true);
   }
 
 
@@ -31,5 +41,5 @@ class Store extends VuexModule {
 const user = getMultiParamModule<Store>(Store, store);
 
 export {
-    user
+    user as default
 };
